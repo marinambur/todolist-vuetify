@@ -1,19 +1,8 @@
-# my-app
+# Vuetify-todo - приложение TODO List
+https://todolist-vuetify-1-git-master-marinambur.vercel.app/#/
 
-## Project setup
-```
-yarn install
-```
-
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
-
-### Compiles and minifies for production
-```
-yarn build
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### Запустить локально
+npm run serve
+### Стек технологий
+- Vue
+- Vuetify
