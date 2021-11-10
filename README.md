@@ -6,3 +6,4 @@ npm run serve
 ### Стек технологий
 - Vue
 - Vuetify
+- Localbase

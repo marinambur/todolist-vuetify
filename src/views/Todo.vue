@@ -48,42 +48,30 @@
 </template>
 
 <script>
-
+import Localbase from 'localbase';
+let db = new Localbase('db');
   export default {
     name: 'Todo',
     data() {
       return {
         newTaskTitle: '',
-        tasks: [
-          {
-            id: 1,
-            title: 'Wake up',
-            done: true
-          }, {
-            id: 2,
-            title: 'Jump',
-            done: false
-          },
-          {
-            id: 3,
-            title: 'Eat',
-            done: false
-          },
-          {
-            id: 4,
-            title: 'Drink some coffee',
-            done: false
-          }
-        ]
+       tasks: db.collection('tasks').get().then(newtasks => {
+         this.tasks = newtasks
+       })
+
       }
     },
     methods: {
       doneTask(id) {
         let task = this.tasks.filter((task)=>task.id === id)[0];
         task.done = !task.done;
+        db.collection('tasks').doc({ id: id }).update({
+          done: task.done
+        })
       },
       deleteTask(id) {
         this.tasks = this.tasks.filter((task)=>task.id !== id);
+        db.collection('tasks').doc({ id: id }).delete();
       },
       addTask() {
       let newTask = {
@@ -91,10 +79,12 @@
         title: this.newTaskTitle,
         done: false
         };
+        db.collection('tasks').add(newTask);
         this.tasks.push(newTask);
         this.newTaskTitle = '';
       }
+
     }
 
-  }
+  };
 </script>
